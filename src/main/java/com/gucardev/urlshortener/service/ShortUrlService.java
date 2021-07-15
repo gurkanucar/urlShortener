@@ -39,6 +39,7 @@ public class ShortUrlService {
 
     public HttpHeaders getUrl(String code) throws URISyntaxException {
         ShortUrl shortUrl = getShortUrl(code);
+        increaseViewCount(shortUrl);
         logger.info("ShortURL info: " + shortUrl.toString());
         URI uri = new URI(shortUrl.getRealValue());
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -94,6 +95,15 @@ public class ShortUrlService {
             realUrl = realUrlRaw;
         }
         return realUrl;
+    }
+
+
+    protected void increaseViewCount(ShortUrl shortUrl) {
+        logger.info("before: "+shortUrl.getViewCount());
+        Long temp = shortUrl.getViewCount();
+        shortUrl.setViewCount(temp+1L);
+        shortUrlRepository.save(shortUrl);
+        logger.info("after: "+shortUrl.getViewCount());
     }
 
 
