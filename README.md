@@ -30,3 +30,8 @@ ShortUrl Dto :
     "realValue":"https://github.com/gurkanucar/urlShortener"
 }
 ```
+
+## Simple Home Page -> [http://localhost:8080](http://localhost:8080/api/v1)
+
+
+<img src="images/index.png" height="500">
