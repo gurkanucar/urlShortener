@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+
+
+        div {
+            position: absolute;
+            width: 75%;
+            height: auto;
+        }
+
+        .center {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%); /* IE 9 */
+            -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+
+<form>
+    <div class="center">
+        <div class="center">
+            <div class="input-group input-group-lg  mb-2">
+                <span class="input-group-text" style="white-space: pre;">Code URL</span>
+                <input id="code" type="text" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-lg">
+            </div>
+            <div class="input-group input-group-lg  mb-2">
+                <span class="input-group-text" style="white-space: pre;">Real URL  </span>
+                <input id="realValue" type="text" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-lg">
+            </div>
+
+            <div class="btn-group center" style="margin-top: 50px;">
+                <button type="button" onclick="generate()" value="Submit" class="btn btn-primary btn-lg btn-block">
+                    Generate
+                </button>
+            </div>
+            <div id="alerts"></div>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    function generate() {
+        let code = document.getElementById('code').value
+        let realValue = document.getElementById('realValue').value
+        let data = {
+            "code": code,
+            "realValue": realValue
+        }
+        fetch("/", {
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then((body) => {
+                console.log(body);
+                if (body.code !== undefined) {
+                    document.getElementById("code").value = "";
+                    document.getElementById("realValue").value = "";
+                    if (code === undefined || code === null || code === "") {
+                        window.alert("Shortener URL: " + body.code);
+                    }
+                } else {
+                    window.alert("Error: " + body.error);
+                }
+            });
+    }
+</script>
+
+
+</body>
+
+</html>
