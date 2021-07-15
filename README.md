@@ -31,4 +31,7 @@ ShortUrl Dto :
 }
 ```
 
-<img src="images/index.png" height="200">
+## Simple Home Page -> [http://localhost:8080](http://localhost:8080/api/v1)
+
+
+<img src="images/index.png" height="500">
