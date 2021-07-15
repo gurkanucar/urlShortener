@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.UniqueElements;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -31,5 +32,7 @@ public class ShortUrl extends BaseEntity implements Serializable {
 
     private String ipAddress;
 
+    @Column(name = "viewCount")
+    private Long viewCount = 0L;
 
 }
