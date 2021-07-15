@@ -35,12 +35,16 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ShortUrlNotFoundException.class)
     public ResponseEntity<?> shortUrlNotFoundExceptionHandler(ShortUrlNotFoundException exception)  {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        Map<String, String> errors = new HashMap<>();
+        errors.put("error",exception.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(UrlAlreadyExistException.class)
     public ResponseEntity<?> urlAlreadyExistExceptionHandler(UrlAlreadyExistException exception)  {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+        Map<String, String> errors = new HashMap<>();
+        errors.put("error",exception.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
     }
 
 }
