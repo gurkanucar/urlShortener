@@ -12,7 +12,7 @@
 
 Base URL:
 
-[http://localhost:8080](http://localhost:8080/api/v1)
+[http://localhost:8080](http://localhost:8080)
 
 GET      /{code}          → It redirects to the real url
 
@@ -31,7 +31,7 @@ ShortUrl Dto :
 }
 ```
 
-## Simple Home Page -> [http://localhost:8080](http://localhost:8080/api/v1)
+## Simple Home Page -> [http://localhost:8080](http://localhost:8080)
 
 
 <img src="images/index.png" height="500">
