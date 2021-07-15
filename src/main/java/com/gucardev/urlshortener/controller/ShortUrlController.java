@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 import static org.springframework.http.HttpStatus.MOVED_PERMANENTLY;
 
 @RestController
-@RequestMapping("/api/v1/shortUrl")
+@RequestMapping
 public class ShortUrlController {
 
     private final ShortUrlService shortUrlService;
